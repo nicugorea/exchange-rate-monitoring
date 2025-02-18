@@ -1,15 +1,22 @@
 ﻿using System.Net.Http.Json;
-using V3._2;
+
+namespace V3._2;
 
 internal class ExchangeRateProvider
 {
-    public async Task<ExchangeRate> GetAsync(string uri)
+    public async Task<ExchangeRate> GetAsync(string? uriArg, Logger logger)
     {
+        if (!Uri.TryCreate(uriArg, UriKind.RelativeOrAbsolute, out var uri))
+        {
+            logger.LogError("The API endpoint URL is not valid.");
+            return new ExchangeRate();
+        }
+        
         using var httpClient = new HttpClient();
         using var response = await httpClient.GetAsync(uri);
         if (!response.IsSuccessStatusCode)
         {
-            await Console.Error.WriteLineAsync($"The response status code ({response.StatusCode}) does not indicate success.");
+            logger.LogError($"The response status code ({response.StatusCode}) does not indicate success.");
             return new ExchangeRate();
         }
 
@@ -17,7 +24,7 @@ internal class ExchangeRateProvider
 
         if (!currentExchangeRate.HasValue)
         {
-            await Console.Out.WriteLineAsync("Current exchange rate could not be retrieved.");
+            logger.LogError("Current exchange rate could not be retrieved.");
         }
 
         return currentExchangeRate;

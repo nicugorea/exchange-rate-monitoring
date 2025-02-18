@@ -38,6 +38,19 @@ while (true)
             continue;
         }
 
+        if(currentExchangeRate < lowestExchangeRate)
+        {
+#pragma warning disable CA1416 This call site is reachable on all platforms. 'Console. Beep(int, int)' is only supported on: 'windows'.
+            Console.Beep(500, 100);
+#pragma warning restore CA1416
+        }
+        else if(currentExchangeRate < averageExchangeRate)
+        {
+#pragma warning disable CA1416 This call site is reachable on all platforms. 'Console. Beep(int, int)' is only supported on: 'windows'.
+            Console.Beep(100, 100);
+#pragma warning restore CA1416
+        }
+        
         Console.Out.WriteLine($"Current exchange rate is: {FormatStatisticData(deserializedResponse)}.");
         Console.Out.WriteLine($"Lowest exchange rate is: {FormatStatisticData(lowestExchangeRate)}.");
         Console.Out.WriteLine($"Highest exchange rate is: {FormatStatisticData(highestExchangeRate)}.");

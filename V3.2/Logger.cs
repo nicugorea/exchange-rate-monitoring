@@ -1,4 +1,6 @@
-﻿internal class Logger
+﻿namespace V3._2;
+
+internal class Logger
 {
     public void LogError(string message)
     {

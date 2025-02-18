@@ -18,4 +18,34 @@ internal static class ExchangeRateMath
 
         return new ExchangeRate(averageValue);
     }
+
+    public static ExchangeRate Min(ExchangeRate left, ExchangeRate right)
+    {
+        if (!left.Value.HasValue)
+        {
+            return right;
+        }
+
+        if (!right.Value.HasValue)
+        {
+            return left;
+        }
+
+        return left < right ? left : right;
+    }
+
+    public static ExchangeRate Max(ExchangeRate left, ExchangeRate right)
+    {
+        if (!left.Value.HasValue)
+        {
+            return right;
+        }
+
+        if (!right.Value.HasValue)
+        {
+            return left;
+        }
+
+        return left > right ? left : right;
+    }
 }

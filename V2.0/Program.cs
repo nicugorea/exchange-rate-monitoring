@@ -4,6 +4,11 @@ double? lowestExchangeRate = null;
 double? highestExchangeRate = null;
 double? averageExchangeRate = null;
 
+if (args.Length < 1)
+{
+    Console.Error.WriteLine("The API endpoint URL is not provided.");
+    return;
+}
 
 if (!Uri.TryCreate(args[0], UriKind.RelativeOrAbsolute, out var uri))
 {

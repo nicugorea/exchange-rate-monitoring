@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-namespace V3._1;
+namespace V3._2;
 
-internal readonly record struct ExchangeRate(double? Value)
+internal readonly record struct ExchangeRate(double? Value = null)
 {
     private const string FallbackValue = "unknown";
 

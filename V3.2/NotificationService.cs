@@ -1,4 +1,6 @@
-﻿internal class NotificationService
+﻿namespace V3._2;
+
+internal class NotificationService
 {
     private const int HighImportanceFrequency = 500;
     private const int LowImportanceFrequency = 100;

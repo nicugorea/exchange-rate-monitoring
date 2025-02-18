@@ -1,4 +1,4 @@
-﻿namespace V3._1;
+﻿namespace V3._2;
 
 internal static class ExchangeRateMath
 {
